@@ -1,0 +1,28 @@
+1. Bebidas
+Café (espresso, americano, cappuccino, latte, etc.)
+Té (té negro, verde, chai, matcha, etc.)
+Bebidas frías (frappé, iced tea, café frío, smoothies, etc.)
+Bebidas especiales (chocolate caliente, tisanas, lattes especiales, etc.)
+Jugos naturales
+2. Alimentos Dulces
+Pastelería (pasteles, tartas, cupcakes)
+Repostería (croissants, muffins, galletas)
+Postres (cheesecake, brownies, helados)
+3. Alimentos Salados
+Sandwiches y Paninis
+Bagels
+Ensaladas
+Snacks (papas, nachos, etc.)
+Tartas saladas (quiches, empanadas)
+4. Opciones Saludables
+Ensaladas frescas
+Bowls (de frutas, yogur, avena, etc.)
+Smoothies saludables
+Snacks saludables (barritas, frutos secos)
+5. Desayunos
+Platos completos (huevos, pancakes, etc.)
+Bebidas para desayuno (leche con café, jugos)
+6. Complementos
+Salsas y aderezos
+Guarniciones (papas, ensaladas pequeñas)
+Extra shots (de espresso, sabores adicionales)
