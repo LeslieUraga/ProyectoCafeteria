@@ -2,10 +2,26 @@
 include('../config.php');
 include('../../layout/sesion.php');
 include('../../layout/parte1.php');
-
 ?>
 
 
+<?php 
+session_start();
+if (isset($_SESSION['mensaje'])) {
+    $respuesta = $_SESSION['mensaje']; ?>
+    <script>
+        Swal.fire({
+            icon: '<?php echo $_SESSION['icono']; ?>',
+            title: '<?php echo $_SESSION['titulo']; ?>',
+            text: '<?php echo $respuesta; ?>',
+        });
+    </script>
+<?php
+    unset($_SESSION['mensaje']);
+    unset($_SESSION['icono']);
+    unset($_SESSION['titulo']);
+}
+?>
 
 <div class="container-fluid">
     <div class="card">
@@ -20,30 +36,30 @@ include('../../layout/parte1.php');
                     <span class="badge text-bg-light fs-6 py-1 px-2 lh-sm mt-3">CATEGORÍAS</span>
                     <br><br>
 
-                    <!-- Ajusta el tamaño de la tabla aquí -->
+                    <!-- Tabla con estilo -->
                     <div class="table-container table-responsive">
-                        <table class="table table-sm">
+                        <table id="tablaCategorias" class="table table-sm" style="border: none;">
                             <thead>
                                 <tr style="border-bottom: 2px solid #814a3e;">
-                                    <th scope="col" class="ps-0">ID</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col" class="text-center">Acciones</th>
+                                    <th scope="col" style="border: none;">ID</th>
+                                    <th scope="col" style="border: none;">Descripción</th>
+                                    <th scope="col" class="text-center" style="border: none;">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider">
+                            <tbody>
                                 <?php
                                 include('../controllers/categorias/listado_de_categorias.php');
                                 foreach($categorias_controller as $categoria_controller) { ?>
                                     <tr>
-                                        <td><?php echo $categoria_controller['id_categoria']; ?></td>
-                                        <td><?php echo $categoria_controller['descripcion']; ?></td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn">
+                                        <td style="border: none;"><?php echo $categoria_controller['id_categoria']; ?></td>
+                                        <td style="border: none;"><?php echo $categoria_controller['descripcion']; ?></td>
+                                        <td class="text-center" style="border: none;">
+                                            <a type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40" height="40" style="color: #ed2d2d;"></iconify-icon>
-                                            </button>
-                                            <button type="button" class="btn">
+                                            </a>
+                                            <a href="<?php echo $URL;?>/app/categorias/update_categoria.php" type="button" class="btn">
                                                 <iconify-icon icon="solar:refresh-circle-bold" class="fs-6" width="40" height="40" style="color: #1fe3e0;"></iconify-icon>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -52,11 +68,10 @@ include('../../layout/parte1.php');
 
                         <br>
                         <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn btn-success">
+                            <a href="<?php echo $URL;?>/app/categorias/create_categoria.php" type="button" class="btn btn-success">
                                 AGREGAR
-                            </button>
+                            </a>
                         </div>
-
                     </div>
 
                     <br>
@@ -72,7 +87,23 @@ include('../../layout/parte1.php');
     </div>
 </div>
 
-
 <?php 
 include('../../layout/parte2.php');
 ?>
+
+<script>
+$(document).ready(function() {
+    $("#tablaCategorias").DataTable({
+        responsive: true,
+        lengthChange: true,
+        autoWidth: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
+        ],
+        dom: 'Bfrtip',
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json'
+        }
+    }).buttons().container().appendTo('#tablaCategorias_wrapper .col-md-6:eq(0)');
+});
+</script>

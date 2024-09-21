@@ -25,8 +25,7 @@ include('../app/config.php');?>
     });
     </script>
   <?php
-  }else{
-
+    unset($_SESSION['mensaje']);
   }
   ?>
   <!--  Body Wrapper -->

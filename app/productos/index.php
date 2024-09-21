@@ -2,7 +2,28 @@
 include('../config.php');
 include('../../layout/sesion.php');
 include('../../layout/parte1.php');
+
 ?>
+
+<body>
+<?php 
+session_start();
+if (isset($_SESSION['mensaje'])) {
+    $respuesta = $_SESSION['mensaje']; ?>
+    <script>
+        Swal.fire({
+            icon: '<?php echo $_SESSION['icono']; ?>',
+            title: '<?php echo $_SESSION['titulo']; ?>',
+            text: '<?php echo $respuesta; ?>',
+        });
+    </script>
+<?php
+    unset($_SESSION['mensaje']);
+    unset($_SESSION['icono']);
+    unset($_SESSION['titulo']);
+}
+?>
+</body>
 
 
 <div class="container-fluid">
@@ -21,16 +42,17 @@ include('../../layout/parte1.php');
 
                     <!-- Ajusta el tamaño de la tabla aquí -->
                     <div class="table-container table-responsive">
-                        <table class="table table-sm">
+                            <tbody>
+                        <table id="tablaProductos" class="table table-sm" style="border: none;">
                             <thead>
                                 <tr style="border-bottom: 2px solid #814a3e;">
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Categoría</th>
-                                    <th scope="col">Stock</th>
-                                    <th scope="col">Stock mínimo</th>
-                                    <th scope="col">Stock máximo</th>
-                                    <th scope="col" class="text-center">Acciones</th>
+                                    <th scope="col"  style="border: none;">Nombre</th>
+                                    <th scope="col"  style="border: none;">Precio</th>
+                                    <th scope="col"  style="border: none;">Categoría</th>
+                                    <th scope="col"  style="border: none;">Stock</th>
+                                    <th scope="col"  style="border: none;">Stock mínimo</th>
+                                    <th scope="col"  style="border: none;">Stock máximo</th>
+                                    <th scope="col"  style="border: none;" class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
@@ -38,13 +60,13 @@ include('../../layout/parte1.php');
                                 include('../controllers/productos/listado_de_productos.php');
                                 foreach($productos_controller as $producto_controller) { ?>
                                     <tr>
-                                        <td><?php echo $producto_controller['nombre']; ?></td>
-                                        <td>$<?php echo $producto_controller['precio']; ?></td>
-                                        <td><?php echo $producto_controller['descripcion']; ?></td>
-                                        <td><?php echo $producto_controller['stock']; ?></td>
-                                        <td><?php echo $producto_controller['stock_minimo']; ?></td>
-                                        <td><?php echo $producto_controller['stock_maximo']; ?></td>
-                                        <td class="text-center" style="white-space: nowrap; width: 100px;">
+                                        <td style="border: none;"><?php echo $producto_controller['nombre']; ?></td>
+                                        <td style="border: none;">$<?php echo $producto_controller['precio']; ?></td>
+                                        <td style="border: none;"><?php echo $producto_controller['descripcion']; ?></td>
+                                        <td style="border: none;"><?php echo $producto_controller['stock']; ?></td>
+                                        <td style="border: none;"><?php echo $producto_controller['stock_minimo']; ?></td>
+                                        <td style="border: none;"><?php echo $producto_controller['stock_maximo']; ?></td>
+                                        <td style="border: none;" class="text-center" style="white-space: nowrap; width: 100px;">
                                             <button type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40" height="40" style="color: #ed2d2d;"></iconify-icon>
                                             </button>
@@ -59,9 +81,9 @@ include('../../layout/parte1.php');
 
                         <br>
                         <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn btn-success">
+                            <a href="<?php echo $URL;?>/app/controllers/productos/agregar_productos.php" type="button" class="btn btn-success">
                                 AGREGAR
-                            </button>
+                            </a>
                         </div>
                         <br>
 
@@ -85,3 +107,21 @@ include('../../layout/parte1.php');
 <?php
 include('../../layout/parte2.php');
 ?>
+
+<script>
+    $(document).ready(function() {
+    $("#tablaProductos").DataTable({
+        responsive: true,
+        lengthChange: true,
+        autoWidth: false,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
+        ],
+        dom: 'Bfrtip',
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json'
+        }
+    }).buttons().container().appendTo('#tablaCategorias_wrapper .col-md-6:eq(0)');
+});
+</script>
+

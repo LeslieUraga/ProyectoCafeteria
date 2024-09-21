@@ -1,6 +1,5 @@
 <?php
     
-// Asegúrate de que la conexión PDO ($pdo) esté correctamente inicializada antes de esta línea.
 $sql_productos = "SELECT
                     p.id_producto,
                     p.nombre,

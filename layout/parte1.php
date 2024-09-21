@@ -12,6 +12,13 @@ include('sesion.php');
   <link rel="stylesheet" href="<?php echo $URL;?>/public/templates/SEODash-1.0.0/SEODash-1.0.0/src/assets/libs/simplebar/dist/simplebar.min.css">
   <link rel="stylesheet" href="<?php echo $URL;?>/public/templates/SEODash-1.0.0/SEODash-1.0.0/src/assets/css/styles.min.css" />
 
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- LIBRERIA DATATABLE -->
+   <link rel="stylesheet" href="//cdn.datatables.net/2.1.7/css/dataTables.dataTables.min.css">
+    <!-- LIBRERIA DATATABLE -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
   <!--LIBRERIA DE SWEETALERT---->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -49,6 +56,14 @@ include('sesion.php');
                   <iconify-icon icon="solar:chart-bold" class="fs-6"></iconify-icon>
                 </span>
                 <span class="hide-menu">Indicadores</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:user-id-bold" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Empleados</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -104,7 +119,7 @@ include('sesion.php');
               </a>
             </li>
             <li class="nav-small-cap">
-              <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-6" class="fs-6"></iconify-icon>
+              <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-6"></iconify-icon>
               <span class="hide-menu">AUTENTICACION</span>
             </li>
             <li class="sidebar-item">

@@ -16,7 +16,7 @@ $query->execute();
 $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
 
 foreach($usuarios as $usuario){
-    $contador =+1;
+    $contador +=1;
     $correo = $usuario['correo_electronico'];
     $nombres = $usuario['nombre'];
     header('Location: '.$URL.'/login');
@@ -28,9 +28,10 @@ if($contador == 0){
     $_SESSION['mensaje']= "Credenciales incorrectas, intentalo de nuevo!";
     header('Location: '.$URL.'/login/login.php');
 }else{
-    echo "Bienvenido";
+    //echo "Bienvenido";
     session_start();
     $_SESSION['session_email']= $correo_electronico;
+    $_SESSION['mensaje'] = "Usted accedio como: ";
     header('Location:'.$URL.'/index.php');
 }
 

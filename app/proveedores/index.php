@@ -21,14 +21,14 @@ include('../../layout/parte1.php');
 
                     <!-- Ajusta el tamaño de la tabla aquí -->
                     <div class="table-container table-responsive-sm">
-                        <table class="table table-sm" >
+                        <table id="tablaProveedores" class="table table-sm"  style="border: none;">
                             <thead>
                                 <tr style="border-bottom: 2px solid #814a3e;">
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Correo electrónico</th>
-                                    <th scope="col">Dirección</th>
-                                    <th scope="col" class="text-center">Acciones</th>
+                                    <th scope="col" style="border: none;">Nombre</th>
+                                    <th scope="col" style="border: none;">Teléfono</th>
+                                    <th scope="col" style="border: none;">Correo electrónico</th>
+                                    <th scope="col" style="border: none;">Dirección</th>
+                                    <th scope="col" style="border: none;" class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
@@ -36,11 +36,11 @@ include('../../layout/parte1.php');
                                 include('../controllers/proveedores/listado_de_proveedores.php');
                                 foreach($proveedores_controller as $proveedor_controller) { ?>
                                     <tr>
-                                        <td><?php echo $proveedor_controller['nombre']; ?></td>                                        
-                                        <td><?php echo $proveedor_controller['telefono']; ?></td>
-                                        <td><?php echo $proveedor_controller['correo_electronico']; ?></td>  
-                                        <td><?php echo $proveedor_controller['direccion']; ?></td>                                        
-                                        <td class="text-center" style="white-space: nowrap; width: 100px;">
+                                        <td style="border: none;"><?php echo $proveedor_controller['nombre']; ?></td>                                        
+                                        <td style="border: none;"><?php echo $proveedor_controller['telefono']; ?></td>
+                                        <td style="border: none;"><?php echo $proveedor_controller['correo_electronico']; ?></td>  
+                                        <td style="border: none;"><?php echo $proveedor_controller['direccion']; ?></td>                                        
+                                        <td  style="border: none;" class="text-center" style="white-space: nowrap; width: 100px;">
                                             <button type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40" height="40" style="color: #ed2d2d;"></iconify-icon>
                                             </button>
@@ -81,3 +81,20 @@ include('../../layout/parte1.php');
 <?php
 include('../../layout/parte2.php');
 ?>
+
+<script>
+    $(document).ready(function() {
+    $("#tablaProveedores").DataTable({
+        responsive: true,
+        lengthChange: true,
+        autoWidth: false,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
+        ],
+        dom: 'Bfrtip',
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json'
+        }
+    }).buttons().container().appendTo('#tablaCategorias_wrapper .col-md-6:eq(0)');
+});
+</script>
