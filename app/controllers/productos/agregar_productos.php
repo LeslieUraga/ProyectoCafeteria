@@ -10,12 +10,6 @@ $stock_minimo = $_POST['stock_minimo'];
 $stock_maximo = $_POST['stock_maximo'];
 $foto = $_POST['foto'];
 
-// Verificar que las variables requeridas no estén vacías
-if (empty($nombre) || empty($precio) || empty($categoria) || empty($stock) || empty($stock_minimo) || empty($stock_maximo) || empty($foto)) {
-    $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
-    header('Location: ' . $URL . "/app/productos/create_productos.php");
-    exit; // Detenemos la ejecución
-}
 
 // Verificar si el producto ya existe
 $consulta = $pdo->prepare("SELECT COUNT(*) FROM productos WHERE nombre = :nombre");

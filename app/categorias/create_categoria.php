@@ -33,7 +33,7 @@ include('../../layout/parte1.php');
                 <div class="card-body"> 
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                        <input class="form-control" name="descripcion" rows="3"></input>
+                        <input class="form-control" name="descripcion" rows="3" required></input>
                     </div>
                 </div>   
             </div>

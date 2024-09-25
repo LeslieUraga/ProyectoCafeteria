@@ -58,8 +58,9 @@ if (isset($_SESSION['mensaje'])) {
                             <tbody class="table-group-divider">
                                 <?php
                                 include('../controllers/productos/listado_de_productos.php');
-                                foreach($productos_controller as $producto_controller) { ?>
-                                    <tr>
+                                foreach($productos_controller as $producto_controller) {
+                                    $id_producto = $producto_controller['id_producto'] ?>
+                                    <tr>                                    
                                         <td style="border: none;"><?php echo $producto_controller['nombre']; ?></td>
                                         <td style="border: none;">$<?php echo $producto_controller['precio']; ?></td>
                                         <td style="border: none;"><?php echo $producto_controller['descripcion']; ?></td>
@@ -70,9 +71,9 @@ if (isset($_SESSION['mensaje'])) {
                                             <button type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40" height="40" style="color: #ed2d2d;"></iconify-icon>
                                             </button>
-                                            <button type="button" class="btn">
+                                            <a href="<?php echo $URL;?>/app/productos/update_productos.php?id=<?php echo $id_producto;?>" type="button" class="btn">
                                                 <iconify-icon icon="solar:refresh-circle-bold" class="fs-6" width="40" height="40" style="color: #1fe3e0;"></iconify-icon>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -81,7 +82,7 @@ if (isset($_SESSION['mensaje'])) {
 
                         <br>
                         <div style="display: flex; justify-content: center;">
-                            <a href="<?php echo $URL;?>/app/controllers/productos/agregar_productos.php" type="button" class="btn btn-success">
+                            <a href="<?php echo $URL;?>/app/productos/create_productos.php" type="button" class="btn btn-success">
                                 AGREGAR
                             </a>
                         </div>

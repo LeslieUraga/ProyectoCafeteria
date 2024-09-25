@@ -1,29 +1,22 @@
 <?php
 include("../../config.php");
+session_start();
+$descripcion = trim($_POST['descripcion']);
 
-session_start(); 
-
-if (isset($_POST['descripcion'])) {
-    $descripcion = trim($_POST['descripcion']); 
-
-    // Verificar si la descripción está vacía
-    if (empty($descripcion)) {
-        $_SESSION['mensaje'] = "El campo descripción no puede estar vacío.";
-        header('Location: ' . $URL . "/app/categorias/create_categoria.php");
-        exit; // Detenemos la ejecución
-    }
-
-    // Verificar si la descripción ya existe en la base de datos
+if (!empty($descripcion)) {
+    // Verificar si la descripción ya existe
     $consulta = $pdo->prepare("SELECT COUNT(*) FROM categorias WHERE descripcion = :descripcion");
     $consulta->bindParam(':descripcion', $descripcion);
     $consulta->execute();
     $existe = $consulta->fetchColumn();
 
     if ($existe > 0) {
-        // Si ya existe, muestra un mensaje de error
+        // La categoría ya existe
         $_SESSION['mensaje'] = "La categoría ya existe. Intenta con otra.";
+        $_SESSION['icono'] = "error"; 
+        $_SESSION['titulo'] = "¡Error!";
         header('Location: ' . $URL . "/app/categorias/create_categoria.php");
-        exit; // Detenemos la ejecución
+        exit; 
     } else {
         // Si no existe, inserta la nueva categoría
         $sentencia = $pdo->prepare("INSERT INTO categorias(descripcion) VALUES (:descripcion)");
@@ -37,9 +30,9 @@ if (isset($_POST['descripcion'])) {
         exit; 
     }
 } else {
-    // Si no se envió una descripción, muestra un mensaje de error
     $_SESSION['mensaje'] = "Error al agregar la categoría!";
     header('Location: ' . $URL . "/app/categorias/create_categoria.php");
     exit; 
 }
 ?>
+

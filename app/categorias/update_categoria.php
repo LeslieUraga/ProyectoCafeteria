@@ -2,16 +2,17 @@
 include('../config.php');
 include('../../layout/sesion.php');
 include('../../layout/parte1.php');
+include('../controllers/categorias/obtener_datos.php');
 ?>
 <Body>
 <?php 
-  session_start();
+  
   if(isset($_SESSION['mensaje'])){
     $respuesta = $_SESSION['mensaje'];?>
     <script>
       Swal.fire({
-      icon: "error",
-      title: "Oops...",
+      icon: "<?php echo $_SESSION['icono']?>",
+      title: "<?php echo $_SESSION['icono']?>",
       text: '<?php echo $respuesta;?>',
     });
     </script>
@@ -27,13 +28,14 @@ include('../../layout/parte1.php');
             <span class="fs-7" style="color: #814a3e;">
                 Actualizar la categoría
             </span>
-        </div><br>
-        <form action="../controllers/categorias/agregar_categoria.php" method="post">
+        </div><br>              
+        <form action="../controllers/categorias/actualizar_categoria.php" method="post">
+            <input type="text" name='id_categoria' value="<?php echo $id_categoria_get;?>" hidden>
             <div class="card">            
                 <div class="card-body"> 
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                        <input class="form-control" name="descripcion" rows="3"></input>
+                        <label for="" class="form-label">Descripción</label>
+                        <input class="form-control" value="<?php echo $descripcion;?>" name="descripcion" rows="3" required></input>
                     </div>
                 </div>   
             </div>

@@ -49,7 +49,9 @@ if (isset($_SESSION['mensaje'])) {
                             <tbody>
                                 <?php
                                 include('../controllers/categorias/listado_de_categorias.php');
-                                foreach($categorias_controller as $categoria_controller) { ?>
+                                foreach($categorias_controller as $categoria_controller) { 
+                                        $id_categoria = $categoria_controller['id_categoria'];
+                                    ?>
                                     <tr>
                                         <td style="border: none;"><?php echo $categoria_controller['id_categoria']; ?></td>
                                         <td style="border: none;"><?php echo $categoria_controller['descripcion']; ?></td>
@@ -57,7 +59,7 @@ if (isset($_SESSION['mensaje'])) {
                                             <a type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40" height="40" style="color: #ed2d2d;"></iconify-icon>
                                             </a>
-                                            <a href="<?php echo $URL;?>/app/categorias/update_categoria.php" type="button" class="btn">
+                                            <a href="<?php echo $URL;?>/app/categorias/update_categoria.php?id=<?php echo $id_categoria;?>" type="button" class="btn">
                                                 <iconify-icon icon="solar:refresh-circle-bold" class="fs-6" width="40" height="40" style="color: #1fe3e0;"></iconify-icon>
                                             </a>
                                         </td>
@@ -101,9 +103,7 @@ $(document).ready(function() {
             'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
         ],
         dom: 'Bfrtip',
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json'
-        }
+       
     }).buttons().container().appendTo('#tablaCategorias_wrapper .col-md-6:eq(0)');
 });
 </script>
