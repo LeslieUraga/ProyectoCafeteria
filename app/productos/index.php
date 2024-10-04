@@ -68,9 +68,9 @@ if (isset($_SESSION['mensaje'])) {
                                         <td style="border: none;"><?php echo $producto_controller['stock_minimo']; ?></td>
                                         <td style="border: none;"><?php echo $producto_controller['stock_maximo']; ?></td>
                                         <td style="border: none;" class="text-center" style="white-space: nowrap; width: 100px;">
-                                            <button type="button" class="btn">
+                                            <a href="<?php echo $URL;?>/app/productos/delete_productos.php?id=<?php echo $id_producto;?>" type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40" height="40" style="color: #ed2d2d;"></iconify-icon>
-                                            </button>
+                                            </a>
                                             <a href="<?php echo $URL;?>/app/productos/update_productos.php?id=<?php echo $id_producto;?>" type="button" class="btn">
                                                 <iconify-icon icon="solar:refresh-circle-bold" class="fs-6" width="40" height="40" style="color: #1fe3e0;"></iconify-icon>
                                             </a>
@@ -119,10 +119,7 @@ include('../../layout/parte2.php');
             'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
         ],
         dom: 'Bfrtip',
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json'
-        }
-    }).buttons().container().appendTo('#tablaCategorias_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#tablaProductos_wrapper .col-md-6:eq(0)');
 });
 </script>
 

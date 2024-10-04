@@ -55,9 +55,9 @@ include('../../layout/parte1.php');
 
                         <br>
                         <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn btn-success">
+                            <a href="<?php echo $URL;?>/app/proveedores/create_proveedores.php" type="button" class="btn btn-success">
                                 AGREGAR
-                            </button>
+                            </a>
                         </div>
                         <br>
 
@@ -92,9 +92,6 @@ include('../../layout/parte2.php');
             'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
         ],
         dom: 'Bfrtip',
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json'
-        }
     }).buttons().container().appendTo('#tablaCategorias_wrapper .col-md-6:eq(0)');
 });
 </script>

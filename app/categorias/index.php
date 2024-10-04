@@ -56,7 +56,7 @@ if (isset($_SESSION['mensaje'])) {
                                         <td style="border: none;"><?php echo $categoria_controller['id_categoria']; ?></td>
                                         <td style="border: none;"><?php echo $categoria_controller['descripcion']; ?></td>
                                         <td class="text-center" style="border: none;">
-                                            <a type="button" class="btn">
+                                            <a href="<?php echo $URL;?>/app/categorias/delete_categoria.php?id=<?php echo $id_categoria;?>" type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40" height="40" style="color: #ed2d2d;"></iconify-icon>
                                             </a>
                                             <a href="<?php echo $URL;?>/app/categorias/update_categoria.php?id=<?php echo $id_categoria;?>" type="button" class="btn">

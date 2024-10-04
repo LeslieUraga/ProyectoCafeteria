@@ -8,7 +8,8 @@ $sql_productos = "SELECT
                     p.stock,
                     p.stock_minimo,
                     p.stock_maximo,
-                    p.id_categoria
+                    p.id_categoria,
+                    p.foto
                 FROM productos p 
                 JOIN categorias c on c.id_categoria = p.id_categoria
                 where id_producto = '$id_producto_get'";
