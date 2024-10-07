@@ -5,6 +5,27 @@ include('../../layout/parte1.php');
 ?>
 
 
+<body>
+<?php 
+session_start();
+if (isset($_SESSION['mensaje'])) {
+    $respuesta = $_SESSION['mensaje']; ?>
+    <script>
+        Swal.fire({
+            icon: '<?php echo $_SESSION['icono']; ?>',
+            title: '<?php echo $_SESSION['titulo']; ?>',
+            text: '<?php echo $respuesta; ?>',
+        });
+    </script>
+<?php
+    unset($_SESSION['mensaje']);
+    unset($_SESSION['icono']);
+    unset($_SESSION['titulo']);
+}
+?>
+</body>
+
+
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
@@ -34,19 +55,21 @@ include('../../layout/parte1.php');
                             <tbody class="table-group-divider">
                                 <?php
                                 include('../controllers/proveedores/listado_de_proveedores.php');
-                                foreach($proveedores_controller as $proveedor_controller) { ?>
+                                foreach($proveedores_controller as $proveedor_controller) { 
+                                        $id_proveedores = $proveedor_controller['id_proveedor'];
+                                    ?>
                                     <tr>
                                         <td style="border: none;"><?php echo $proveedor_controller['nombre']; ?></td>                                        
                                         <td style="border: none;"><?php echo $proveedor_controller['telefono']; ?></td>
                                         <td style="border: none;"><?php echo $proveedor_controller['correo_electronico']; ?></td>  
                                         <td style="border: none;"><?php echo $proveedor_controller['direccion']; ?></td>                                        
                                         <td  style="border: none;" class="text-center" style="white-space: nowrap; width: 100px;">
-                                            <button type="button" class="btn">
+                                            <a href="<?php echo $URL;?>/app/proveedores/delete_proveedores.php?id=<?php echo $id_proveedores;?>" type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40" height="40" style="color: #ed2d2d;"></iconify-icon>
-                                            </button>
-                                            <button type="button" class="btn">
+                                            </a>
+                                            <a href="<?php echo $URL;?>/app/proveedores/update_proveedores.php?id=<?php echo $id_proveedores;?>" type="button" class="btn">
                                                 <iconify-icon icon="solar:refresh-circle-bold" class="fs-6" width="40" height="40" style="color: #1fe3e0;"></iconify-icon>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php } ?>
