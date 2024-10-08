@@ -6,6 +6,7 @@ $sql_productos = "SELECT
                     p.precio,
                     c.descripcion,
                     p.stock,
+                    p.foto,
                     p.stock_minimo,
                     p.stock_maximo 
                 FROM productos p 

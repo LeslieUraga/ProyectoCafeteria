@@ -39,14 +39,14 @@ if (isset($_SESSION['mensaje'])) {
                 <div class="card-body p-4">
                     <span class="badge text-bg-light fs-6 py-1 px-2 lh-sm mt-3">PRODUCTOS</span>
                     <br><br>
-
-                    <!-- Ajusta el tamaño de la tabla aquí -->
+                    
                     <div class="table-container table-responsive">
                             <tbody>
                         <table id="tablaProductos" class="table table-sm" style="border: none;">
                             <thead>
                                 <tr style="border-bottom: 2px solid #814a3e;">
                                     <th scope="col"  style="border: none;">Nombre</th>
+                                    <th scope="col"  style="border: none;">Imagen</th>
                                     <th scope="col"  style="border: none;">Precio</th>
                                     <th scope="col"  style="border: none;">Categoría</th>
                                     <th scope="col"  style="border: none;">Stock</th>
@@ -61,11 +61,14 @@ if (isset($_SESSION['mensaje'])) {
                                 foreach($productos_controller as $producto_controller) {
                                     $id_producto = $producto_controller['id_producto'] ?>
                                     <tr>                                    
-                                        <td style="border: none;"><?php echo $producto_controller['nombre']; ?></td>
+                                        <td style="border: none;"><?php echo $producto_controller['nombre'];?></td>
+                                        <td style="border: none;">                                       
+                                            <img src="<?php echo $producto_controller['foto'];?>" width="50%" alt="">
+                                        </td>
                                         <td style="border: none;">$<?php echo $producto_controller['precio']; ?></td>
                                         <td style="border: none;"><?php echo $producto_controller['descripcion']; ?></td>
                                         <td style="border: none;"><?php echo $producto_controller['stock']; ?></td>
-                                        <td style="border: none;"><?php echo $producto_controller['stock_minimo']; ?></td>
+                                        <td style="border: none;"><?php echo $producto_controller['stock_minimo']; ?></td>                                        
                                         <td style="border: none;"><?php echo $producto_controller['stock_maximo']; ?></td>
                                         <td style="border: none;" class="text-center" style="white-space: nowrap; width: 100px;">
                                             <a href="<?php echo $URL;?>/app/productos/delete_productos.php?id=<?php echo $id_producto;?>" type="button" class="btn">

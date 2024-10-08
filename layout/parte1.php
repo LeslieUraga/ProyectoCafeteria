@@ -87,7 +87,7 @@ include('sesion.php');
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" aria-expanded="false">
+              <a class="sidebar-link" href="<?php echo $URL;?>/app/compras_proveedores" aria-expanded="false">
                 <span>
                   <iconify-icon icon="solar:bag-5-bold" class="fs-6"></iconify-icon>
                 </span>

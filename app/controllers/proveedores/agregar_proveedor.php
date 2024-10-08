@@ -2,40 +2,36 @@
 include("../../config.php");
 session_start();
 $nombre = trim($_POST['nombre']);
-$telefono = trim($_POST['telefono']);
-$correo_electronico = trim($_POST['correo_electronico']);
-$direccion = trim($_POST['direccion']);
+$fecha_compra = trim($_POST['fecha_compra']);
+$total = trim($_POST['total']);
+$nombreEmpleado = trim($_POST['nombreEmpleado']);
 
-if (!empty($nombre) || !empty($telefono)|| !empty($correo_electronico)|| !empty($direccion)) {
-    $consulta = $pdo->prepare("SELECT COUNT(*) FROM proveedores WHERE nombre = :nombre");
-    $consulta->bindParam(':nombre', $nombre);
-    $consulta->execute();
-    $existe = $consulta->fetchColumn();
+if (!is_numeric($total) || $total <= 0) {
+    $_SESSION['mensaje'] = "El total debe ser un número positivo.";
+    $_SESSION['icono'] = "error";
+    $_SESSION['titulo'] = "Error";
+    header('Location: ' . $URL . "/app/compras_proveedores/create_compras_proveedor.php");
+    exit;
+}
 
-    if ($existe > 0) {        
-        $_SESSION['mensaje'] = "El proveedor ya existe. Intenta con otro.";
-        $_SESSION['icono'] = "error"; 
-        $_SESSION['titulo'] = "¡Error!";
-        header('Location: ' . $URL . "/app/proveedores/create_proveedores.php");
-        exit; 
-    } else {        
-        $sentencia = $pdo->prepare("INSERT INTO proveedores(nombre, telefono, correo_electronico, direccion) VALUES (:nombre, :telefono, :correo_electronico, :direccion)");
-        $sentencia->bindParam(':nombre', $nombre);
-        $sentencia->bindParam(':telefono', $telefono);
-        $sentencia->bindParam(':correo_electronico', $correo_electronico);
-        $sentencia->bindParam(':direccion', $direccion);
-        $sentencia->execute();
+try{
+    $sentencia = $pdo->prepare("INSERT INTO compras(id_proveedor, fecha_compra, total, rfc) VALUES (:nombre, :fecha_compra, :total, :nombreEmpleado)");
+    $sentencia->bindParam(':nombre', $nombre);
+    $sentencia->bindParam(':fecha_compra', $fecha_compra);
+    $sentencia->bindParam(':total', $total);
+    $sentencia->bindParam(':nombreEmpleado', $nombreEmpleado);
+    $sentencia->execute();
 
-        $_SESSION['mensaje'] = "Proveedor agregado con éxito!";
-        $_SESSION['icono'] = "success"; 
-        $_SESSION['titulo'] = "¡Éxito!";
-        header('Location: ' . $URL . "/app/proveedores/");
-        exit; 
-    }
-} else {
+    $_SESSION['mensaje'] = "Compra realizada con éxito!";
+    $_SESSION['icono'] = "success"; 
+    $_SESSION['titulo'] = "¡Éxito!";
+    header('Location: ' . $URL . "/app/compras_proveedores/");
+    exit; 
+}catch{
     $_SESSION['mensaje'] = "Error al agregar el proveedor!";
-    header('Location: ' . $URL . "/app/proveedores/create_proveedores.php");
+    header('Location: ' . $URL . "/app/compras_proveedores/create_compras_proveedor.php");
     exit; 
 }
+    
 ?>
 

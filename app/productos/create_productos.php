@@ -66,7 +66,7 @@ if (isset($_SESSION['mensaje'])) {
                     </div>
                     <div class="col-md-12">
                         <label for="foto" class="form-label">Foto</label>
-                        <input type="text" class="form-control" name="foto" id="foto" aria-label="URL de la foto">
+                        <input type="file" class="form-control" name="foto" id="foto" aria-label="URL de la foto">
                     </div>
                 </div>
             </div>
