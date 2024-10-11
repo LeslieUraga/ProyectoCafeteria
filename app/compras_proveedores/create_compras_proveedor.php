@@ -31,17 +31,14 @@ include('../controllers/productos/listado_de_productos.php');
 
     <form action="../controllers/compras_proveedores/agregar_compras_proveedores.php" method="post">
         <div class="row">
-            <!-- Mitad izquierda de la pantalla -->
             <div class="col-md-6">
                 <div class="card mb-3">
-                    <div class="card-header">
-                        Compra a proveedor
-                    </div>
+                    <div class="card-header">Compra a proveedor</div>
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="nombre" class="form-label">Proveedor</label>
-                                <select class="form-control" name="nombre" id="nombre" required aria-label="Selecciona un proveedor">
+                                <select class="form-control" name="nombre" id="nombre" required>
                                     <option value="">Selecciona un proveedor</option>
                                     <?php foreach ($proveedores_controller as $proveedor_controller): ?>
                                         <option value="<?php echo htmlspecialchars($proveedor_controller['id_proveedor']); ?>">
@@ -56,7 +53,7 @@ include('../controllers/productos/listado_de_productos.php');
                             </div>
                             <div class="col-md-6">
                                 <label for="total" class="form-label">Total</label>
-                                <input type="number" class="form-control" name="total" id="total" required readonly> 
+                                <input type="number" class="form-control" name="total" id="total" required readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nombreEmpleado" class="form-label">Empleado</label>
@@ -70,14 +67,12 @@ include('../controllers/productos/listado_de_productos.php');
 
             <div class="col-md-6">
                 <div class="card mb-3">
-                    <div class="card-header">
-                        Detalle de la compra
-                    </div>
+                    <div class="card-header">Detalle de la compra</div>
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="producto" class="form-label">Producto</label>
-                                <select class="form-control" name="producto" id="producto" required aria-label="Selecciona un producto">
+                                <select class="form-control" name="producto" id="producto" required>
                                     <option value="">Selecciona un producto</option>
                                     <?php foreach ($productos_controller as $producto_controller): ?>
                                         <option value="<?php echo htmlspecialchars($producto_controller['id_producto']); ?>">

@@ -6,11 +6,11 @@ $id_proveedor = trim($_POST['nombre']);
 $fecha_compra = trim($_POST['fecha_compra']);
 $total = trim($_POST['total']);
 $rfc = trim($_POST['rfc']);
-$productos = $_POST['producto']; 
-$cantidades = $_POST['cantidad']; 
-$precios_unitarios = $_POST['precio_unitario']; 
+$producto = trim($_POST['producto']); 
+$cantidad = trim($_POST['cantidad']); 
+$precio_unitario = trim($_POST['precio_unitario']); 
 
-if (empty($id_proveedor) || empty($fecha_compra) || empty($total)) {
+if (empty($id_proveedor) || empty($fecha_compra) || empty($total) || empty($producto) || empty($cantidad) || empty($precio_unitario)) {
     $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
     $_SESSION['icono'] = "error";
     $_SESSION['titulo'] = "Error";
@@ -38,18 +38,13 @@ try {
 
     $id_compras = $pdo->lastInsertId();
 
-    if (isset($productos) && isset($cantidades) && isset($precios_unitarios)) {
-        for ($i = 0; $i < count($productos); $i++) {
-            if (!empty($productos[$i]) && !empty($cantidades[$i]) && !empty($precios_unitarios[$i])) {
-                $sentencia_detalle = $pdo->prepare("INSERT INTO detalle_compras (id_compras, id_producto, cantidad, precio_unitario) VALUES (:id_compras, :id_producto, :cantidad, :precio_unitario)");
-                $sentencia_detalle->bindParam(':id_compras', $id_compras);
-                $sentencia_detalle->bindParam(':id_producto', $productos[$i]);
-                $sentencia_detalle->bindParam(':cantidad', $cantidades[$i]);
-                $sentencia_detalle->bindParam(':precio_unitario', $precios_unitarios[$i]);
-                $sentencia_detalle->execute();
-            }
-        }
-    }
+    $sentencia_detalle = $pdo->prepare("INSERT INTO detalle_compras (id_compras, id_producto, cantidad, precio_unitario) VALUES (:id_compras, :id_producto, :cantidad, :precio_unitario)");
+    $sentencia_detalle->bindParam(':id_compras', $id_compras);
+    $sentencia_detalle->bindParam(':id_producto', $producto);
+    $sentencia_detalle->bindParam(':cantidad', $cantidad);
+    $sentencia_detalle->bindParam(':precio_unitario', $precio_unitario);
+    $sentencia_detalle->execute();
+
     $pdo->commit();
 
     $_SESSION['mensaje'] = "Compra realizada con éxito!";
