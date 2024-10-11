@@ -8,7 +8,11 @@ $precio = trim($_POST['precio']);
 $stock = trim($_POST['stock']);
 $stock_minimo = trim($_POST['stock_minimo']);
 $stock_maximo = trim($_POST['stock_maximo']);
-$foto = trim($_POST['foto']);
+$nombreDelArchivo = date("Y-m-d-h-i-s");
+$filename = $nombreDelArchivo."__".$_FILES['foto']['name'];
+$location = "../../productos/img_productos/".$filename;
+move_uploaded_file($_FILES['foto']['tmp_name'], $location);
+$foto = $_POST['foto'];
 $categoria = $_POST['categoria']; 
 
 if (!empty($nombre) && !empty($precio) && !empty($stock) && !empty($stock_minimo) && !empty($stock_maximo) && !empty($categoria)) {
@@ -79,7 +83,7 @@ if (!empty($nombre) && !empty($precio) && !empty($stock) && !empty($stock_minimo
     $sentencia->bindParam(':stock', $stock_nuevo);
     $sentencia->bindParam(':stock_minimo', $stock_minimo_nuevo);
     $sentencia->bindParam(':stock_maximo', $stock_maximo_nuevo);
-    $sentencia->bindParam(':foto', $foto);
+    $sentencia->bindParam(':foto', $filename);
     $sentencia->bindParam(':categoria', $categoria);
     $sentencia->bindParam(':id_producto', $id_producto);
     $sentencia->execute();

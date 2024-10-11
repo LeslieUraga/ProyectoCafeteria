@@ -1,37 +1,53 @@
 <?php
 include("../../config.php");
 session_start();
-$nombre = trim($_POST['nombre']);
-$fecha_compra = trim($_POST['fecha_compra']);
-$total = trim($_POST['total']);
-$nombreEmpleado = trim($_POST['nombreEmpleado']);
 
-if (!is_numeric($total) || $total <= 0) {
-    $_SESSION['mensaje'] = "El total debe ser un número positivo.";
+$nombre = trim($_POST['nombre']);
+$telefono = trim($_POST['telefono']);
+$correo_electronico = trim($_POST['correo_electronico']);
+$direccion = trim($_POST['direccion']);
+
+
+if (empty($nombre) || empty($telefono) || empty($correo_electronico) || empty($direccion)) {
+    $_SESSION['mensaje'] = "Todos los campos son obligatorios.";
     $_SESSION['icono'] = "error";
     $_SESSION['titulo'] = "Error";
-    header('Location: ' . $URL . "/app/compras_proveedores/create_compras_proveedor.php");
+    header('Location: ' . $URL . "/app/proveedores/agregar_proveedor.php");
     exit;
 }
 
-try{
-    $sentencia = $pdo->prepare("INSERT INTO compras(id_proveedor, fecha_compra, total, rfc) VALUES (:nombre, :fecha_compra, :total, :nombreEmpleado)");
+
+if (!filter_var($correo_electronico, FILTER_VALIDATE_EMAIL)) {
+    $_SESSION['mensaje'] = "Correo electrónico no válido.";
+    $_SESSION['icono'] = "error";
+    $_SESSION['titulo'] = "Error";
+    header('Location: ' . $URL . "/app/proveedores/agregar_proveedor.php");
+    exit;
+}
+
+try {
+    
+    $sentencia = $pdo->prepare("INSERT INTO proveedores(nombre, telefono, correo_electronico, direccion) 
+                                VALUES (:nombre, :telefono, :correo_electronico, :direccion)");
     $sentencia->bindParam(':nombre', $nombre);
-    $sentencia->bindParam(':fecha_compra', $fecha_compra);
-    $sentencia->bindParam(':total', $total);
-    $sentencia->bindParam(':nombreEmpleado', $nombreEmpleado);
+    $sentencia->bindParam(':telefono', $telefono);
+    $sentencia->bindParam(':correo_electronico', $correo_electronico);
+    $sentencia->bindParam(':direccion', $direccion);
     $sentencia->execute();
 
-    $_SESSION['mensaje'] = "Compra realizada con éxito!";
+    
+    $_SESSION['mensaje'] = "Proveedor agregado con éxito!";
     $_SESSION['icono'] = "success"; 
     $_SESSION['titulo'] = "¡Éxito!";
-    header('Location: ' . $URL . "/app/compras_proveedores/");
+    header('Location: ' . $URL . "/app/proveedores/");
     exit; 
-}catch{
-    $_SESSION['mensaje'] = "Error al agregar el proveedor!";
-    header('Location: ' . $URL . "/app/compras_proveedores/create_compras_proveedor.php");
+
+} catch (Exception $e) {
+    
+    $_SESSION['mensaje'] = "Error al agregar el proveedor: " . $e->getMessage();
+    $_SESSION['icono'] = "error";
+    $_SESSION['titulo'] = "Error";
+    header('Location: ' . $URL . "/app/proveedores/agregar_proveedor.php");
     exit; 
 }
-    
 ?>
-

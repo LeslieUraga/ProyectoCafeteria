@@ -19,7 +19,8 @@ if (isset($_SESSION['session_email'])) {
     
     foreach ($usuarios as $usuario) {
         $nombres_sesion = $usuario['nombre'] . ' ' . $usuario['apellido_paterno'] . ' ' . $usuario['apellido_materno'];
-        $foto = $usuario['foto'];
+        $foto = $usuario['foto']; 
+        $rfc = $usuario['rfc']       ;
     }
 } else {
     //echo 'No existe';

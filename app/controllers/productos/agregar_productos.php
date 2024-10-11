@@ -8,6 +8,11 @@ $categoria = $_POST['categoria'];
 $stock = $_POST['stock'];
 $stock_minimo = $_POST['stock_minimo'];
 $stock_maximo = $_POST['stock_maximo'];
+
+$nombreDelArchivo = date("Y-m-d-h-i-s");
+$filename = $nombreDelArchivo."__".$_FILES['foto']['name'];
+$location = "../../productos/img_productos/".$filename;
+move_uploaded_file($_FILES['foto']['tmp_name'], $location);
 $foto = $_POST['foto'];
 
 
@@ -32,7 +37,7 @@ if ($existe > 0) {
     $sentencia->bindParam(':stock', $stock);
     $sentencia->bindParam(':stock_minimo', $stock_minimo);
     $sentencia->bindParam(':stock_maximo', $stock_maximo);
-    $sentencia->bindParam(':foto', $foto);
+    $sentencia->bindParam(':foto', $filename);
     
     $sentencia->execute();
 

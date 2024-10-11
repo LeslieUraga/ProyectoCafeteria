@@ -7,6 +7,7 @@ include('../../layout/parte1.php');
 $sql_indicadores = "SELECT e.nombre,
                e.apellido_paterno,
                e.apellido_materno,
+               e.rfc,
                COALESCE(he.fechaEntrada, CURDATE()) AS fechaEntrada,
                COALESCE(he.fechaSalida, CURDATE()) AS fechaSalida,
                COALESCE(he.horaEntrada, '00:00:00') AS horaEntrada,
@@ -25,6 +26,7 @@ foreach ($empleados as $empleado) {
     $fechaSalida = $empleado['fechaSalida'];
     $horaEntrada = new DateTime($empleado['horaEntrada']);
     $horaSalida = new DateTime($empleado['horaSalida']);
+    $rfc = $empleado['rfc'];
     
     // Ajustar la hora de salida si es antes de la hora de entrada (suponiendo que es al día siguiente)
     if ($horaSalida < $horaEntrada) {

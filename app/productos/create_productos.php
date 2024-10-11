@@ -2,47 +2,50 @@
 include('../config.php');
 include('../../layout/sesion.php');
 include('../../layout/parte1.php');
-include('../controllers/categorias/listado_de_categorias.php'); 
+include('../controllers/categorias/listado_de_categorias.php');
 ?>
 
 <body>
-<?php 
-session_start();
-if (isset($_SESSION['mensaje'])) {
-    $respuesta = $_SESSION['mensaje']; ?>
-    <script>
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: '<?php echo $respuesta; ?>',
-        });
-    </script>
-<?php
-    unset($_SESSION['mensaje']);
-}
-?>
+    <?php
+    session_start();
+    if (isset($_SESSION['mensaje'])) {
+        $respuesta = $_SESSION['mensaje']; ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: '<?php echo $respuesta; ?>',
+            });
+        </script>
+        <?php
+        unset($_SESSION['mensaje']);
+    }
+    ?>
 </body>
 
 <div class="container-fluid">
     <div class="text-center mb-4">
         <span class="fs-7" style="color: #814a3e;">Agregar nuevo producto</span>
     </div>
-    
-    <form action="../controllers/productos/agregar_productos.php" method="post">
+
+    <form action="../controllers/productos/agregar_productos.php" method="post" enctype="multipart/form-data">
         <div class="card">
             <div class="card-body">
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre" required aria-label="Nombre del producto">
+                        <input type="text" class="form-control" name="nombre" id="nombre" required
+                            aria-label="Nombre del producto">
                     </div>
                     <div class="col-md-6">
                         <label for="precio" class="form-label">Precio</label>
-                        <input type="number" class="form-control" name="precio" id="precio" required aria-label="Precio del producto" step="0.01">
+                        <input type="number" class="form-control" name="precio" id="precio" required
+                            aria-label="Precio del producto" step="0.01">
                     </div>
                     <div class="col-md-6">
                         <label for="categoria" class="form-label">Categoría</label>
-                        <select class="form-control" name="categoria" id="categoria" required aria-label="Selecciona una categoría">
+                        <select class="form-control" name="categoria" id="categoria" required
+                            aria-label="Selecciona una categoría">
                             <option value="">Selecciona una categoría</option>
                             <?php foreach ($categorias_controller as $categoria_controller): ?>
                                 <option value="<?php echo htmlspecialchars($categoria_controller['id_categoria']); ?>">
@@ -54,19 +57,46 @@ if (isset($_SESSION['mensaje'])) {
 
                     <div class="col-md-6">
                         <label for="stock" class="form-label">Stock</label>
-                        <input type="number" class="form-control" name="stock" id="stock" required aria-label="Stock disponible">
+                        <input type="number" class="form-control" name="stock" id="stock" required
+                            aria-label="Stock disponible">
                     </div>
                     <div class="col-md-6">
                         <label for="stock_minimo" class="form-label">Stock mínimo</label>
-                        <input type="number" class="form-control" name="stock_minimo" id="stock_minimo" required aria-label="Stock mínimo">
+                        <input type="number" class="form-control" name="stock_minimo" id="stock_minimo" required
+                            aria-label="Stock mínimo">
                     </div>
                     <div class="col-md-6">
                         <label for="stock_maximo" class="form-label">Stock máximo</label>
-                        <input type="number" class="form-control" name="stock_maximo" id="stock_maximo" required aria-label="Stock máximo">
+                        <input type="number" class="form-control" name="stock_maximo" id="stock_maximo" required
+                            aria-label="Stock máximo">
                     </div>
-                    <div class="col-md-12">
-                        <label for="foto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" name="foto" id="foto" aria-label="URL de la foto">
+                    <div class="col-md-6 text-center">
+                        <label for="" class="form-label">Foto</label>
+                        <input type="file" class="form-control" name="foto" id="file" aria-label="URL de la foto">                        
+                        <script>
+                            function archivo(evt) {
+                                var files = evt.target.files; // FileList object
+                                // Obtenemos la imagen del campo "file".
+                                for (var i = 0, f; f = files[i]; i++) {
+                                    //Solo admitimos imágenes.
+                                    if (!f.type.match('image.*')) {
+                                        continue;
+                                    }
+                                    var reader = new FileReader();
+                                    reader.onload = (function (theFile) {
+                                        return function (e) {
+                                            // Insertamos la imagen
+                                            document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="', e.target.result, '" width="25%" title="', escape(theFile.name), '"/>'].join('');
+                                        };
+                                    })(f);
+                                    reader.readAsDataURL(f);
+                                }
+                            }
+                            document.getElementById('file').addEventListener('change', archivo, false);
+                        </script>
+                    </div>
+                    <div class="col-md-6 text-center">
+                    <output id="list"></output>
                     </div>
                 </div>
             </div>
@@ -74,11 +104,11 @@ if (isset($_SESSION['mensaje'])) {
 
         <div class="d-flex justify-content-center gap-3 mt-4">
             <button type="submit" class="btn btn-info">GUARDAR</button>
-            <a href="<?php echo $URL;?>/app/productos" class="btn btn-danger">CANCELAR</a>
+            <a href="<?php echo $URL; ?>/app/productos" class="btn btn-danger">CANCELAR</a>
         </div>
     </form>
 </div>
 
-<?php 
+<?php
 include('../../layout/parte2.php');
 ?>

@@ -48,6 +48,8 @@ if (isset($_SESSION['mensaje'])) {
                                     <th scope="col" style="border: none;">Nombre proveedor</th>
                                     <th scope="col" style="border: none;">Fecha de compra</th>
                                     <th scope="col" style="border: none;">Total</th>
+                                    <th scope="col" style="border: none;">Producto</th>
+                                    <th scope="col" style="border: none;">Cantidad</th>
                                     <th scope="col" style="border: none;">Empleado</th>
                                     <th scope="col" style="border: none;" class="text-center">Acciones</th>
                                 </tr>
@@ -61,6 +63,8 @@ if (isset($_SESSION['mensaje'])) {
                                     <tr>
                                         <td style="border: none;"><?php echo $compra_proveedor_controller['nombre']; ?></td>                                        
                                         <td style="border: none;"><?php echo $compra_proveedor_controller['fecha_compra']; ?></td>
+                                        <td style="border: none;"><?php echo $compra_proveedor_controller['id_producto']; ?></td> 
+                                        <td style="border: none;"><?php echo $compra_proveedor_controller['cantidad']; ?></td> 
                                         <td style="border: none;"><?php echo $compra_proveedor_controller['total']; ?></td>   
                                         <td style="border: none;"><?php echo $compra_proveedor_controller['nombreEmpleado']; ?></td>      
                                         <td  style="border: none;" class="text-center" style="white-space: nowrap; width: 100px;">

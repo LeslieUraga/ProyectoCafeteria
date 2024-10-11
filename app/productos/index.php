@@ -62,8 +62,8 @@ if (isset($_SESSION['mensaje'])) {
                                     $id_producto = $producto_controller['id_producto'] ?>
                                     <tr>                                    
                                         <td style="border: none;"><?php echo $producto_controller['nombre'];?></td>
-                                        <td style="border: none;">                                       
-                                            <img src="<?php echo $producto_controller['foto'];?>" width="50%" alt="">
+                                        <td style="border: none;width: 100px">                                       
+                                <img src="<?php echo $URL."/app/productos/img_productos/".$producto_controller['foto'];?>" width="100%" alt="">
                                         </td>
                                         <td style="border: none;">$<?php echo $producto_controller['precio']; ?></td>
                                         <td style="border: none;"><?php echo $producto_controller['descripcion']; ?></td>

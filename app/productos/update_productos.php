@@ -28,7 +28,7 @@ if (isset($_SESSION['mensaje'])) {
         <span class="fs-7" style="color: #814a3e;">Actualizar producto</span>
     </div>
     
-    <form action="../controllers/productos/actualizar_productos.php" method="post">
+    <form action="../controllers/productos/actualizar_productos.php" method="post" enctype="multipart/form-data">
     <input type="text" name='id_producto' value="<?php echo $id_producto_get;?>" hidden>
         <div class="card">
             <div class="card-body">
@@ -47,7 +47,7 @@ if (isset($_SESSION['mensaje'])) {
                             <option value="">Selecciona una categoría</option>
                             <?php foreach ($categorias_controller as $categoria_controller): ?>
                                 <option value="<?php echo htmlspecialchars($categoria_controller['id_categoria']); ?>"
-                                    <?php echo ($categoria_controller['id_categoria'] == $id_categoria_actual) ? 'selected' : ''; ?>> <!-- Aquí se compara -->
+                                    <?php echo ($categoria_controller['id_categoria'] == $id_categoria_actual) ? 'selected' : ''; ?>>
                                     <?php echo htmlspecialchars($categoria_controller['descripcion']); ?>
                                 </option>
                             <?php endforeach; ?>
@@ -65,9 +65,41 @@ if (isset($_SESSION['mensaje'])) {
                         <label for="stock_maximo" class="form-label">Stock máximo</label>
                         <input type="number" class="form-control" name="stock_maximo" id="stock_maximo" value="<?php echo $stock_maximo?>" required aria-label="Stock máximo">
                     </div>
-                    <div class="col-md-12">
-                        <label for="foto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" name="foto" id="foto" value="<?php echo $foto?>" aria-label="URL de la foto">
+
+                    <div class="col-md-4 text-center">
+                        <label for="foto" class="form-label">Nueva Foto</label>
+                        <input type="file" class="form-control" name="foto" id="file" aria-label="Selecciona una nueva foto del producto">                        
+                        <script>
+                            function archivo(evt) {
+                                var files = evt.target.files; // FileList object
+                                for (var i = 0, f; f = files[i]; i++) {
+                                    if (!f.type.match('image.*')) {
+                                        continue;
+                                    }
+                                    var reader = new FileReader();
+                                    reader.onload = (function (theFile) {
+                                        return function (e) {
+                                            // Insertamos la imagen en la previsualización
+                                            document.getElementById("list").innerHTML = ['<img class="thumb thumbnail" src="', e.target.result, '" width="30%" title="', escape(theFile.name), '"/>'].join('');
+                                        };
+                                    })(f);
+                                    reader.readAsDataURL(f);
+                                }
+                            }
+                            document.getElementById('file').addEventListener('change', archivo, false);
+                        </script>
+                    </div>
+                    
+                    <?php if (!empty($foto)): ?>
+                    <div class="col-md-4 text-center">
+                        <label for="" class="form-label">Foto Actual</label> <br>
+                        <img src="<?php echo $URL;?>/app/productos/img_productos/<?php echo htmlspecialchars($foto); ?>" alt="Foto del producto" width="25%">
+                    </div>
+                    <?php endif; ?>                    
+                    
+                    <div class="col-md-4 text-center">
+                        <label for="" class="form-label">Foto A Reemplazar</label> <br>
+                        <output id="list"></output>                                                     
                     </div>
                 </div>
             </div>

@@ -12,6 +12,9 @@ include('sesion.php');
   <link rel="stylesheet" href="<?php echo $URL;?>/public/templates/SEODash-1.0.0/SEODash-1.0.0/src/assets/libs/simplebar/dist/simplebar.min.css">
   <link rel="stylesheet" href="<?php echo $URL;?>/public/templates/SEODash-1.0.0/SEODash-1.0.0/src/assets/css/styles.min.css" />
 
+  <link href="<?php echo $URL; ?>/public/templates/SEODash-1.0.0/SEODash-1.0.0/src/assets/css/icons/tabler-icons/tabler-icons.css" rel="stylesheet">
+
+
   <!-- BOOTSTRAP -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- LIBRERIA DATATABLE -->
@@ -41,7 +44,7 @@ include('sesion.php');
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
-          </div>
+          </div>          
         </div>
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
@@ -153,7 +156,7 @@ include('sesion.php');
           <ul class="navbar-nav">
             <li class="nav-item d-block d-xl-none">
               <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                <i class="ti ti-menu-2"></i>
+                <i class="ti ti-menu"></i>
               </a>
             </li>
           </ul>

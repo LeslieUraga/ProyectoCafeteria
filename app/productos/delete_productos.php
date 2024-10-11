@@ -30,13 +30,13 @@ if (isset($_SESSION['mensaje'])) {
     
     <form action="../controllers/productos/eliminar_producto.php" method="post">
     <input type="text" name='id_producto' value="<?php echo $id_producto_get;?>" hidden>
-        <div class="card">
+        <div class="card">                    
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $nombre;?>" required aria-label="Nombre del producto" disabled>
-                    </div>
+                    </div>                   
                     <div class="col-md-6">
                         <label for="precio" class="form-label">Precio</label>
                         <input type="number" class="form-control" name="precio" id="precio"  value="<?php echo $precio?>" required aria-label="Precio del producto" step="0.01" disabled>
@@ -65,9 +65,9 @@ if (isset($_SESSION['mensaje'])) {
                         <label for="stock_maximo" class="form-label">Stock máximo</label>
                         <input type="number" class="form-control" name="stock_maximo" id="stock_maximo" value="<?php echo $stock_maximo?>" required aria-label="Stock máximo" disabled>
                     </div>
-                    <div class="col-md-12">
-                        <label for="foto" class="form-label">Foto</label>
-                        <input type="text" class="form-control" name="foto" id="foto" value="<?php echo $foto?>" aria-label="URL de la foto" disabled>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Foto</label> <br>
+                        <img src="<?php echo $URL;?>/app/productos/img_productos/<?php echo htmlspecialchars($foto); ?>" alt="Foto del producto" width="30%">
                     </div>
                 </div>
             </div>

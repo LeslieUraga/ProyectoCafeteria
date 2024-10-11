@@ -8,7 +8,7 @@ $sql_productos = "SELECT
                     p.stock,
                     p.foto,
                     p.stock_minimo,
-                    p.stock_maximo 
+                    p.stock_maximo
                 FROM productos p 
                 JOIN categorias c on c.id_categoria = p.id_categoria";
 $query_productos = $pdo->prepare($sql_productos);
