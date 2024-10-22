@@ -12,5 +12,6 @@ $sql_compras_proveedor = "SELECT
 $query_compras_proveedor = $pdo->prepare($sql_compras_proveedor);
 $query_compras_proveedor->execute();
 $compras_proveedor_controller = $query_compras_proveedor->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 

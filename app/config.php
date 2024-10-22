@@ -1,13 +1,13 @@
 <?php 
 //Se declaran las variables globales para la conexion a servidor y BD
 define('SERVIDOR', 'localhost');
+define('PUERTO', '3308'); 
 define('USUARIO','root');
 define('PASSWORD','root');
 define('BD','cafeteria');
 
 //Se crea la cadena de conexion 
-
-$servidor = "mysql:dbname=".BD.";host=".SERVIDOR;
+$servidor = "mysql:dbname=".BD.";host=".SERVIDOR.";port=".PUERTO; // Añadimos el puerto a la cadena
 
 try {
     //Instancia PDO para acceder a la BD

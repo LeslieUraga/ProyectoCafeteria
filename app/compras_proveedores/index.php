@@ -58,7 +58,7 @@ include('../../layout/parte1.php');
                                 <?php
                                 include('../controllers/compras_proveedores/listado_compras_proveedor.php');
                                 foreach ($compras_proveedor_controller as $compra_proveedor_controller) {
-
+                                    
                                     ?>
                                     <tr>
                                         <td style="border: none;"><?php echo $compra_proveedor_controller['nombre']; ?></td>
@@ -68,20 +68,22 @@ include('../../layout/parte1.php');
                                         <?php
                                         include('../controllers/compras_proveedores/obtener_datos.php');
                                         foreach ($productos as $producto) {
-                                            ?>
-                                            <td style="border: none;"><?php echo $producto['nombre']; ?></td>
-                                            <td style="border: none;"><?php echo $producto['cantidad']; ?></td>
-                                        <?php } ?>
+                                            $nombre_producto = $producto['nombre'];
+                                            $cantidad = $producto['cantidad'];
+                                            $id_compras = $producto['id_compras'];}
+                                            ?>                                            
+                                        <td style="border: none;"><?php echo $nombre_producto; ?></td>
+                                        <td style="border: none;"><?php echo $cantidad; ?></td>          
                                         <td style="border: none;">
                                             <?php echo $compra_proveedor_controller['nombreEmpleado']; ?></td>
                                         <td style="border: none;" class="text-center"
                                             style="white-space: nowrap; width: 100px;">
-                                            <a href="<?php echo $URL; ?>/app/compras_proveedores/delete_compras_proveedores.php?id=<?php echo $id_compras; ?>"
+                                            <a href="<?php echo $URL;?>/app/compras_proveedores/delete_compras_proveedor.php?id=<?php echo $id_compras;?>"
                                                 type="button" class="btn">
                                                 <iconify-icon icon="solar:minus-circle-bold" class="fs-6" width="40"
                                                     height="40" style="color: #ed2d2d;"></iconify-icon>
                                             </a>
-                                            <a href="<?php echo $URL; ?>/app/compras_proveedores/update_compras_proveedores.php?id=<?php echo $id_compras; ?>"
+                                            <a href="<?php echo $URL;?>/app/compras_proveedores/update_compras_proveedor.php?id=<?php echo $id_compras;?>"
                                                 type="button" class="btn">
                                                 <iconify-icon icon="solar:refresh-circle-bold" class="fs-6" width="40"
                                                     height="40" style="color: #1fe3e0;"></iconify-icon>
