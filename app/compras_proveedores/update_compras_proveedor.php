@@ -108,11 +108,36 @@ $id_productos = isset($id_productos) ? $id_productos : '';
                                 <input type="number" value="<?php echo htmlspecialchars($cantidad); ?>" class="form-control" 
                                     name="cantidad" id="cantidad" step="0.01" oninput="calcularTotal()">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label for="precio_unitario" class="form-label">Precio Unitario</label>
                                 <input type="number" class="form-control" value="<?php echo htmlspecialchars($precio_unitario); ?>" 
                                     name="precio_unitario" id="precio_unitario" oninput="calcularTotal()">
                             </div>
+
+                            <?php foreach ($productos_controller as $producto_controller) { ?>
+                                <div class="col-md-6">
+                                    <label for="stock" class="form-label">Stock Actual</label>
+                                    <input value="<?php echo $producto_controller['stock']; ?>" type="number"
+                                        class="form-control" name="stock" id="stock" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="stock_nuevo" class="form-label">Stock Nuevo</label>
+                                    <input type="number" class="form-control" name="stock_nuevo" id="stock_nuevo"
+                                        readonly>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="stock_minimo" class="form-label">Stock Minimo</label>
+                                    <input value="<?php echo $producto_controller['stock_minimo']; ?>" type="number"
+                                        class="form-control" name="stock_minimo" id="stock_minimo" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="stock_maximo" class="form-label">Stock Maximo</label>
+                                    <input value="<?php echo $producto_controller['stock_maximo']; ?>" type="number"
+                                        class="form-control" name="stock_maximo" id="stock_maximo" readonly>
+                                </div>
+                            <?php } ?>
+
                         </div>
                     </div>
                 </div>
@@ -126,12 +151,14 @@ $id_productos = isset($id_productos) ? $id_productos : '';
     </form>
 
     <script>
-        function calcularTotal() {
+         function calcularTotal() {
             const cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
             const precioUnitario = parseFloat(document.getElementById('precio_unitario').value) || 0;
             const total = cantidad * precioUnitario;
-
+            const stockActual = parseFloat(document.getElementById('stock').value) || 0;
+            const stockNuevo = stockActual + cantidad;
             document.getElementById('total').value = total.toFixed(2);
+            document.getElementById('stock_nuevo').value = stockNuevo >= 0 ? stockNuevo : 0;
         }
     </script>
 

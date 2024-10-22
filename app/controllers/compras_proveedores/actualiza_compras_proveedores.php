@@ -76,7 +76,7 @@ try {
 
     $pdo->commit();
 
-    $_SESSION['mensaje'] = "Compra actualizada con éxito y el stock ha sido ajustado!";
+    $_SESSION['mensaje'] = "Compra actualizada con éxito y el stock ha sido modificado!";
     $_SESSION['icono'] = "success";
     $_SESSION['titulo'] = "¡Éxito!";
     header('Location: ' . $URL . "/app/compras_proveedores/");

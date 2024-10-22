@@ -41,7 +41,8 @@ include('../controllers/productos/listado_de_productos.php');
                                 <select class="form-control" name="nombre" id="nombre" required>
                                     <option value="">Selecciona un proveedor</option>
                                     <?php foreach ($proveedores_controller as $proveedor_controller): ?>
-                                        <option value="<?php echo htmlspecialchars($proveedor_controller['id_proveedor']); ?>">
+                                        <option
+                                            value="<?php echo htmlspecialchars($proveedor_controller['id_proveedor']); ?>">
                                             <?php echo htmlspecialchars($proveedor_controller['nombre']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -57,7 +58,8 @@ include('../controllers/productos/listado_de_productos.php');
                             </div>
                             <div class="col-md-6">
                                 <label for="nombreEmpleado" class="form-label">Empleado</label>
-                                <input type="text" class="form-control" id="nombreEmpleado" readonly value="<?php echo $nombres_sesion; ?>">
+                                <input type="text" class="form-control" id="nombreEmpleado" readonly
+                                    value="<?php echo $nombres_sesion; ?>">
                                 <input type="hidden" name="rfc" value="<?php echo $rfc; ?>">
                             </div>
                         </div>
@@ -75,7 +77,8 @@ include('../controllers/productos/listado_de_productos.php');
                                 <select class="form-control" name="producto" id="producto" required>
                                     <option value="">Selecciona un producto</option>
                                     <?php foreach ($productos_controller as $producto_controller): ?>
-                                        <option value="<?php echo htmlspecialchars($producto_controller['id_producto']); ?>">
+                                        <option
+                                            value="<?php echo htmlspecialchars($producto_controller['id_producto']); ?>">
                                             <?php echo htmlspecialchars($producto_controller['nombre']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -83,12 +86,40 @@ include('../controllers/productos/listado_de_productos.php');
                             </div>
                             <div class="col-md-6">
                                 <label for="cantidad" class="form-label">Cantidad</label>
-                                <input type="number" class="form-control" name="cantidad" id="cantidad" required step="0.01" oninput="calcularTotal()">
+                                <input type="number" class="form-control" name="cantidad" id="cantidad" required
+                                    step="0.01" oninput="calcularTotal()">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label for="precio_unitario" class="form-label">Precio Unitario</label>
-                                <input type="number" class="form-control" name="precio_unitario" id="precio_unitario" required oninput="calcularTotal()">
+                                <input type="number" class="form-control" name="precio_unitario" id="precio_unitario"
+                                    required oninput="calcularTotal()">
                             </div>
+
+                            <?php foreach ($productos_controller as $producto_controller) { ?>
+                                <div class="col-md-6">
+                                    <label for="stock" class="form-label">Stock Actual</label>
+                                    <input value="<?php echo $producto_controller['stock']; ?>" type="number"
+                                        class="form-control" name="stock" id="stock" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="stock_nuevo" class="form-label">Stock Nuevo</label>
+                                    <input type="number" class="form-control" name="stock_nuevo" id="stock_nuevo"
+                                        readonly>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="stock_minimo" class="form-label">Stock Minimo</label>
+                                    <input value="<?php echo $producto_controller['stock_minimo']; ?>" type="number"
+                                        class="form-control" name="stock_minimo" id="stock_minimo" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="stock_maximo" class="form-label">Stock Maximo</label>
+                                    <input value="<?php echo $producto_controller['stock_maximo']; ?>" type="number"
+                                        class="form-control" name="stock_maximo" id="stock_maximo" readonly>
+                                </div>
+                            <?php } ?>
+
+
                         </div>
                     </div>
                 </div>
@@ -106,8 +137,10 @@ include('../controllers/productos/listado_de_productos.php');
             const cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
             const precioUnitario = parseFloat(document.getElementById('precio_unitario').value) || 0;
             const total = cantidad * precioUnitario;
-
+            const stockActual = parseFloat(document.getElementById('stock').value) || 0;
+            const stockNuevo = stockActual + cantidad;
             document.getElementById('total').value = total.toFixed(2);
+            document.getElementById('stock_nuevo').value = stockNuevo >= 0 ? stockNuevo : 0;
         }
     </script>
 
