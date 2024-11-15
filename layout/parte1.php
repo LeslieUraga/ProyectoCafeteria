@@ -22,12 +22,14 @@ include('sesion.php');
     <!-- LIBRERIA DATATABLE -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+  
 
   <!--LIBRERIA DE SWEETALERT---->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!--GRAFICAS---->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <!--LIBRERIA DE SWEETALERT---->
+  <script src="<?php echo $URL;?>/public/templates/SEODash-1.0.0/SEODash-1.0.0/src/assets/js/chart.min.js"></script>
+
+  
 </head>
 
 <body>  
@@ -62,27 +64,27 @@ include('sesion.php');
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" aria-expanded="false">
+              <a class="sidebar-link" href="<?php echo $URL?>/app/empleados" aria-expanded="false">
                 <span>
                   <iconify-icon icon="solar:user-id-bold" class="fs-6"></iconify-icon>
                 </span>
                 <span class="hide-menu">Empleados</span>
               </a>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="" aria-expanded="false">
+            <!--<li class="sidebar-item">
+              <a class="sidebar-link" href="<?php echo $URL;?>/app/pedidos" aria-expanded="false">
                 <span>
                   <iconify-icon icon="solar:clock-circle-bold-duotone" class="fs-6"></iconify-icon>
                 </span>
                 <span class="hide-menu">Pedidos</span>
               </a>
-            </li>
+            </li>-->
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
               <span class="hide-menu">PANEL DE ACCIONES</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="" aria-expanded="false">
+              <a class="sidebar-link" href="<?php echo $URL;?>/app/ventas" aria-expanded="false">
                 <span>
                   <iconify-icon icon="solar:cart-large-2-bold" class="fs-6"></iconify-icon>
                 </span>
@@ -119,26 +121,6 @@ include('sesion.php');
                   <iconify-icon icon="solar:shop-2-bold-duotone" class="fs-6"></iconify-icon>
                 </span>
                 <span class="hide-menu">Productos</span>
-              </a>
-            </li>
-            <li class="nav-small-cap">
-              <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-6"></iconify-icon>
-              <span class="hide-menu">AUTENTICACION</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo $URL;?>/login/login.php" aria-expanded="false">
-                <span>
-                  <iconify-icon icon="solar:login-3-bold-duotone" class="fs-6"></iconify-icon>
-                </span>
-                <span class="hide-menu">Login</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="<?php echo $URL;?>/public/templates/SEODash-1.0.0/SEODash-1.0.0/src/html/authentication-register.html" aria-expanded="false">
-                <span>
-                  <iconify-icon icon="solar:user-plus-rounded-bold-duotone" class="fs-6"></iconify-icon>
-                </span>
-                <span class="hide-menu">Register</span>
               </a>
             </li>
 

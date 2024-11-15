@@ -30,12 +30,7 @@ include('../../layout/parte1.php');
     <div class="card">
         <div class="card-body">
             <div class="card overflow-hidden hover-img">
-                <div class="position-relative">
-                    <a href="javascript:void(0)">
-                        <img src="<?php echo $URL; ?>/public/templates/SEODash-1.0.0/SEODash-1.0.0/src/assets/images/products/compras a proveedor.jpg"
-                            class="card-img-top" alt="matdash-img" width="100" height="400">
-                    </a>
-                </div>
+                
 
                 <div class="card-body p-4">
                     <span class="badge text-bg-light fs-6 py-1 px-2 lh-sm mt-3">COMPRAS A PROVEEDORES</span>
@@ -104,6 +99,7 @@ include('../../layout/parte1.php');
                         <br>
 
                     </div>
+                    
 
                     <br>
                     <div class="d-flex align-items-center gap-4">
