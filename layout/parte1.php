@@ -123,6 +123,22 @@ include('sesion.php');
                 <span class="hide-menu">Productos</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="<?php echo $URL;?>/app/Tablas_Auditoria" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:glasses-bold" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Auditoria Empleados</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="<?php echo $URL;?>/app/Tablas_Auditoria/auditoria_productos.php" aria-expanded="false">
+                <span>
+                  <iconify-icon icon="solar:glasses-bold" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Auditoria Productos</span>
+              </a>
+            </li>
 
         </nav>
         <!-- End Sidebar navigation -->

@@ -70,7 +70,7 @@ include('../../layout/parte1.php');
                                         <td style="border: none;"><?php echo $nombre_producto; ?></td>
                                         <td style="border: none;"><?php echo $cantidad; ?></td>          
                                         <td style="border: none;">
-                                            <?php echo $compra_proveedor_controller['nombreEmpleado']; ?></td>
+                                            <?php echo $compra_proveedor_controller['nombreempleado']; ?></td>
                                         <td style="border: none;" class="text-center"
                                             style="white-space: nowrap; width: 100px;">
                                             <a href="<?php echo $URL;?>/app/compras_proveedores/delete_compras_proveedor.php?id=<?php echo $id_compras;?>"

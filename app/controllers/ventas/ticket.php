@@ -13,7 +13,7 @@ try {
             v.fecha_venta,
             v.total,
             CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', e.apellido_materno) AS nombre,
-            GROUP_CONCAT(p.nombre SEPARATOR ', ') AS productos,
+            STRING_AGG(p.nombre, ', ') AS productos,  -- Usar STRING_AGG en lugar de GROUP_CONCAT
             SUM(dv.cantidad) AS cantidad
         FROM ventas v
         JOIN detalle_ventas dv ON dv.id_venta = v.id_venta
